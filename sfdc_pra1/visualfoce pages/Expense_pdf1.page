@@ -1,0 +1,42 @@
+<apex:page standardController="Expense__c" renderAs="pdf" extensions="Expensecls">
+ <!--Page for PDF generation-->
+  <h2 style="color:blue; text-align: center;">REIMBURSEMENT DETAILS</h2>
+  <html>
+        <body>
+            <table border="1"  width="600px" align="center">
+           
+           <!--Fields to be displayed in the PDF--> 
+            <tr>
+                    <td>EVENT</td>
+                    <td>{!Expense__c.Name}</td>
+              </tr>
+            
+            <tr>
+                    <td>EVENT DATE</td>
+                    <td>{!Expense__c.Date__c} </td>
+              </tr>
+         
+              <tr>
+                 <td>TOTAL AMOUNT</td>
+                 <td>{!Expense__c.Amount__c}</td>
+              </tr>
+             
+             
+             <apex:repeat value="{!memExp}" var="i">
+                    <tr>
+                    <td> {!i.Member__r.Name} </td>
+                   <td> {!i.Contrib_amount__c} </td>
+                    </tr>
+                    
+            </apex:repeat>
+                   
+                   <tr>
+                    <td>UPDATED TOTAL AMOUNT</td>
+                    <td>{!Expense__c.Updated_total_amount__c}</td>
+              </tr>
+                   
+            </table>      
+        </body>
+    </html>
+  
+</apex:page>
